@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import axios from "axios";
 import cheerio from "cheerio";
+import UFCTimer from "./UFCTimer";
 
 let id = 0;
 
@@ -16,7 +17,13 @@ function Home(props) {
   const [tags, setTags] = useState(INITIAL_STATES);
   const [count, setCount] = useState(2);
   const [event, setEvent] = useState([]);
+  const [selectedChoice, setSelectedChoice] = useState("");
 
+  const handleSelection = choice => {
+    if (!selectedChoice) {
+      setSelectedChoice(choice);
+    }
+  };
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const result = await axios.get('https://www.ufc.com/events');
@@ -80,92 +87,29 @@ function Home(props) {
         </NumberChart>
       </LeftMenu>
 
-      <img src={"/assets/IMG_2224.png"} alt="me"></img>
-
+      <Picture src={"/assets/IMG_2224.png"} alt="me"></Picture>
       <RightMenu>
-        <Timer>
-          <Clock>
-            <Info>
-              <Logo>
-                <img src="/assets/LI-In-Bug.png"></img>
-              </Logo>
-            </Info>
-          </Clock>
-          <Contestant></Contestant>
-        </Timer>
+        <UFCTimer/>
+        <span>Sat, Feb 18 / 7:00 PM EST / Main Card</span>
+        <span>What are your picks for the fight?</span>
+        <div>
+        <div onClick={() => handleSelection("Red")}>
+          <p>Choice 1: Red</p>
+          {selectedChoice === "Red" && <p>Selected</p>}
+        </div>
+        <div onClick={() => handleSelection("Blue")}>
+          <p>Choice 2: Blue</p>
+          {selectedChoice === "Blue" && <p>Selected</p>}
+        </div>
+      </div>
+
       </RightMenu>
+
     </Container>
   )
 }
 
 export default Home
-
-const Timer = styled.div`
-  position: relative;
-  height: 50px;
-  display: flex;
-  align-iterms: center;
-`
-
-const Clock = styled.div`
-  position: relative;
-  margin-top: 150px;
-  z-index: 1;
-  box-sizing: border-box;
-  width: 200px;
-  height: 100%;
-  padding: 0 1.5em;
-  background-image: linear-gradient(180deg,#363636,#2b2b2b);
-  transform-origin: center 0;
-  transform: translate(0px, 0%);
-  height: 100%;
-  display: flex;
-`
-const Info = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: block;
-`
-
-const Logo = styled.div`
-  width: 69px;
-  transform: translate(0%, -50%);
-  left: 0px;
-  height: 100%;
-  background-image: linear-gradient(180deg,#363636,#2b2b2b);
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  img {
-    transform: translate(0px, 0%);
-    width: 4.3em;
-    height: 100%;
-    transition: fill 0.3s ease;
-    fill: white;
-  }
-`
-
-const Contestant = styled.div`
-  order: -1;
-  overflow: hidden;
-  margin-top: 150px;
-  width: 100%;
-  color: white;
-  font-size: 1.3em;
-  font-family: "Share Tech Mono",monospace;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  background-image: linear-gradient(0deg,#4b4c50,#696969);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`
 
 
 const Container = styled.main`
@@ -174,17 +118,21 @@ const Container = styled.main`
   height: 84%;
   position: absolute;
   background-color: #191A20;
-  img {
-    padding: 0 12px;
-    height: 25px;
-  }
 `
+
+const Picture = styled.img`
+  height: 350px;
+  position: absolute;
+  bottom: 50px;
+  right: 45%;
+`
+
 
 const LeftMenu = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 40%;
+  top: 30%;
   left: 5%;
   gap: 10px;
 `
@@ -246,8 +194,15 @@ const NumberChart = styled.div`
   }
 `
 const RightMenu = styled.div`
-color: white;
-
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 42%;
+  transform: translateY(-50%);
+  right: 0;
+  margin-right: 20px;
+  gap: 10px;
 `
 
 
