@@ -1,28 +1,44 @@
-import {React, useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components"
 
 function Header() {
   return (
     <Nav>
       <NavMenu>
+        <LeftMenu>
+          <a href="/">
+            <span>HOME</span>
+          </a>
+          <a href="/experience">
+            <span>EXPERIENCE</span>
+          </a>  
+          <a href="/projects">
+            <span>PROJECTS</span>
+          </a>
+          <a href="/hobbies">   
+            <span>HOBBIES</span>
+          </a>
+        </LeftMenu>
         <a href="/">
-          <span>Home</span>
+          <Logo>RS</Logo>
         </a>
-        <a href="/experience">
-          <span>Experience</span>
-        </a>  
-        <a href="/projects">
-          <span>Projects</span>
-        </a>
-        <a href="/hobbies">   
-          <span>Hobbies</span>
-        </a>
-        <a href='https://github.com/rohan-sagar1' target="_blank" rel="noreferrer">
-          <img src="/assets/github-mark.png" alt="github" />
-        </a>
-        <a href='https://www.linkedin.com/in/rohan-sagar3/' target="_blank" rel="noreferrer">
-          <img src="/assets/LI-In-Bug.png" alt="linkedin"/>
-        </a>
+        <RightMenu>
+          <a href='https://github.com/rohan-sagar1' target="_blank" rel="noreferrer">
+            <span>
+              <img src="/assets/github-mark.png" alt="github" />
+            </span>
+          </a>
+          <a href='https://www.linkedin.com/in/rohan-sagar3/' target="_blank" rel="noreferrer">
+            <span>
+              <img src="/assets/LI-In-Bug.png" alt="linkedin"/>
+            </span>
+          </a>
+          <a href='mailto:rsagar@purdue.edu' target="_blank" rel="noreferrer">
+            <span>
+              <img src="/assets/icons8-mail-53.png" alt="email"/>
+            </span>
+          </a>
+        </RightMenu>
       </NavMenu>
     </Nav>
   )
@@ -31,56 +47,112 @@ function Header() {
 export default Header
 
 const Nav = styled.nav`
-    height: 70px;
-    background-color: rgba(255, 255, 255, .15);
-    backdrop-filter: blur(5px);
-    display: flex;
-    align-items: center;
-    padding: 0 36px;
-    overflow-x: hidden;
-    justify-content: flex-end;
-`
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 70px;
+  width: 96%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 36px;
+  z-index: 3;
+`;
 
 const NavMenu = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  margin-top: 15px;
+  a{
     display: flex;
-    margin-right: 25px;
     align-items: center;
-    justify-content: flex-end;
-    flex: 1;
-    a {
-        display: flex; 
-        align-items: center;
-        padding: 0 12px;
-        cursor: pointer;
-        text-decoration: none;
-        color: inherit;
-        img {
-            height: 20px;
-        }
-        span {
-            font-size: 13px;
-            letter-spacing: 1.42px;
-            position: relative;
-            margin-right: 12px;
-            &:after {
-                content: "";
-                height: 2px;
-                background: white;
-                position: absolute;
-                left: 0; 
-                right: 0;
-                bottom: -6px;
-                opacity: 0;
-                transform-origin: left center;
-                transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-                transform: scaleX(0);
-            }
-        }
-        &:hover {
-            span:after {
-                transform: scaleX(1);
-                opacity: 1;
-            }
-        }
+    padding: 0 12px;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    span {
+      display: flex;
+      font-size: 1.11111rem;
+      white-space: nowrap;
+      position: relative;
+      &:before {
+        background-color: red;
+        color: red;
+        border-radius: 0px 0px 4px 4px;
+        bottom: -30px;
+        content: "";
+        height: 2px;
+        left: 0px;
+        opacity: 0;
+        position: absolute;
+        right: 0px;
+        transform-origin: left center;
+        transform: scaleX(0);
+        transition: all 450ms ease-in-out;
+        visibility: hidden;
+        width: auto;
+      }
     }
-`
+    &:hover {
+      color: red;
+      span:before {
+        transform: scaleX(1);
+        visibility: visible;
+        opacity: 1 !important;
+      }
+    }
+  }
+`;
+
+const Logo = styled.span`
+  font-size: 3.11111rem !important;
+  font-family: "NewFont";
+  display: flex;
+  align-items: center;
+  margin-right: 55px;
+  cursor: pointer;
+  &:before {
+    background-color: red;
+    color: red;
+    border-radius: 0px 0px 4px 4px;
+    bottom: -10px !important;
+    content: "";
+    height: 2px;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: all 450ms ease-in-out;
+    visibility: hidden;
+    width: auto;
+  }
+  &:hover {
+    color: red;
+    &:before {
+      transform: scaleX(1);
+      visibility: visible;
+      opacity: 1 !important;
+    }
+  }
+`;
+
+const LeftMenu = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const RightMenu = styled.div`
+  display: flex;
+  align-items: center;
+  img {
+    padding: 0 12px;
+    height: 25px;
+  }
+`;
+
