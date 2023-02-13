@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import styled from "styled-components"
+import React, { useState, useEffect } from 'react';
+import styled from "styled-components";
+import axios from "axios";
+import cheerio from "cheerio";
 
 let id = 0;
 
@@ -13,6 +15,24 @@ const INITIAL_STATES = [
 function Home(props) {
   const [tags, setTags] = useState(INITIAL_STATES);
   const [count, setCount] = useState(2);
+  const [event, setEvent] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await axios.get('https://www.ufc.com/events');
+  //     const $ = cheerio.load(result.data);
+  //     const eventFighters = $('.c-card-event--result__info');
+  //     const events = [];
+  //     let event = $(eventFighters[0]).text().trim();
+  //     event = event.replace(/\s+/g, '');
+  //     const [name, date] = event.split('\n').map(item => item.trim());
+  //     events.push(name, date);
+  //     events.push(event);
+  //     setEvent(event);
+  //     console.log(event);
+  //   };
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     let interval = null;
@@ -60,16 +80,93 @@ function Home(props) {
         </NumberChart>
       </LeftMenu>
 
-      <img src={"/public/assets/IMG_2224.png"} alt="me"></img>
+      <img src={"/assets/IMG_2224.png"} alt="me"></img>
 
       <RightMenu>
-
+        <Timer>
+          <Clock>
+            <Info>
+              <Logo>
+                <img src="/assets/LI-In-Bug.png"></img>
+              </Logo>
+            </Info>
+          </Clock>
+          <Contestant></Contestant>
+        </Timer>
       </RightMenu>
     </Container>
   )
 }
 
 export default Home
+
+const Timer = styled.div`
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-iterms: center;
+`
+
+const Clock = styled.div`
+  position: relative;
+  margin-top: 150px;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 200px;
+  height: 100%;
+  padding: 0 1.5em;
+  background-image: linear-gradient(180deg,#363636,#2b2b2b);
+  transform-origin: center 0;
+  transform: translate(0px, 0%);
+  height: 100%;
+  display: flex;
+`
+const Info = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+`
+
+const Logo = styled.div`
+  width: 69px;
+  transform: translate(0%, -50%);
+  left: 0px;
+  height: 100%;
+  background-image: linear-gradient(180deg,#363636,#2b2b2b);
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  img {
+    transform: translate(0px, 0%);
+    width: 4.3em;
+    height: 100%;
+    transition: fill 0.3s ease;
+    fill: white;
+  }
+`
+
+const Contestant = styled.div`
+  order: -1;
+  overflow: hidden;
+  margin-top: 150px;
+  width: 100%;
+  color: white;
+  font-size: 1.3em;
+  font-family: "Share Tech Mono",monospace;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-image: linear-gradient(0deg,#4b4c50,#696969);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`
+
 
 const Container = styled.main`
   display: flex;
@@ -149,6 +246,7 @@ const NumberChart = styled.div`
   }
 `
 const RightMenu = styled.div`
+color: white;
 
 `
 
