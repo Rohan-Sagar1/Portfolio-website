@@ -51,9 +51,9 @@ const Nav = styled.nav`
   top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 75px;
+  height: 65px;
   border-radius: 1px;
-  width: 85%;
+  width: 97%;
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -74,6 +74,7 @@ const NavMenu = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1;
+  margin-top: 10px;
   a{
     display: flex;
     align-items: center;
@@ -90,7 +91,7 @@ const NavMenu = styled.div`
         background-color: red;
         color: red;
         border-radius: 0px 0px 4px 4px;
-        bottom: -40px;
+        bottom: -30px;
         content: "";
         height: 2px;
         left: 0px;
@@ -113,18 +114,13 @@ const NavMenu = styled.div`
       }
     }
   }
-
-  @media only screen and (max-width: 1255px) {
-    margin-right: 0px;
-  }
 `;
 
 const Logo = styled.span`
-  font-size: 2.51111rem !important;
+  font-size: 2.31111rem !important;
   font-family: "NewFont";
   display: flex;
   align-items: center;
-  margin-right: 80px;
   cursor: pointer;
   &:before {
     background-color: red;

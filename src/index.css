@@ -1,22 +1,23 @@
 @font-face {
   font-family: 'UfcFont';
-  src: url("/public/Berthold\ Akzidenz\ Grotesk\ Bold\ Condensed.otf");
-  font-style: bold;
-  font-weight: 500;
+  src: url("/public/Share/Share-Bold.ttf");
+  src: url("/public/Share/Share-BoldItalic.ttf");
+  src: url("/public/Share/Share-Italic.ttf");
+  src: url("/public/Share/Share-Regular.ttf");
 }
 
 @font-face {
   font-family: 'Newfont';
   src: url("/public/UFC-sternbach-font-betterstudio.com/Sternbach-Bold-Italic.otf");
   font-style: bold;
-  font-weight: 700;
 }
 
 
 body {
   margin: 0;
   color: white;
-  background-color: #161821;
+  background-color: #F6F1F1;
+  font-weight: 900;
   font-family: 'UfcFont', sans-serif;
   color: #191919;
   -webkit-font-smoothing: antialiased;
