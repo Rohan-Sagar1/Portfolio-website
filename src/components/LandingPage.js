@@ -145,7 +145,7 @@ const RightMenu = styled.div`
   color: white;
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 70px;
   width: 35%;
   margin-right: 25px;
   gap: 10px;
@@ -227,13 +227,6 @@ const NumberChart = styled.div`
     margin-top: 15px;
     height: 90%;
   }
-`
-
-const Date = styled.span`
-  display: flex;
-  font-size: 18px;
-  text-align: center;
-  margin-left: 100px;
 `
 
 const UserSelect = styled.div`

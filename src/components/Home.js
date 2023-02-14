@@ -1,12 +1,12 @@
 import React from 'react';
 import LandingPage from './LandingPage';
-import Experience from './Experience';
+import Skills from './Skills';
 
 function Home() {
   return (
     <>
     <LandingPage/>
-    <Experience/>
+    <Skills/>
     </>
   )
 }
