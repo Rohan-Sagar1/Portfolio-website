@@ -9,13 +9,13 @@ function Header() {
           <a href="/">
             <span>HOME</span>
           </a>
-          <a href="/experience">
+          <a href="#experience">
             <span>EXPERIENCE</span>
           </a>  
-          <a href="/projects">
+          <a href="#projects">
             <span>PROJECTS</span>
           </a>
-          <a href="/hobbies">   
+          <a href="#hobbies">   
             <span>HOBBIES</span>
           </a>
         </LeftMenu>

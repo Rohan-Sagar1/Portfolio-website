@@ -57,7 +57,7 @@ function UFCTimer() {
     <Timer>
       <Clock>
         <Info>
-          <span>LightWeight Bout</span>
+          <span>Flyweight Bout</span>
         </Info>
         <ClockWrapper>
           <Logo>
