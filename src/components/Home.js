@@ -1,12 +1,14 @@
 import React from 'react';
 import LandingPage from './LandingPage';
-import Skills from './Skills';
+import Projects from './Projects';
+import TerminalUI from './TerminalUI';
 
 function Home() {
   return (
     <>
     <LandingPage/>
-    <Skills/>
+    <Projects/>
+    <TerminalUI/>
     </>
   )
 }
