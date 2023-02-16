@@ -7,8 +7,8 @@ function Home() {
   return (
     <>
     <LandingPage/>
-    <Projects/>
-    <TerminalUI/>
+    {/* <Projects/>
+    <TerminalUI/> */}
     </>
   )
 }

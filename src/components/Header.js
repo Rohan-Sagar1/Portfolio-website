@@ -53,7 +53,7 @@ const Nav = styled.nav`
   transform: translate(-50%, -50%);
   height: 65px;
   border-radius: 1px;
-  width: 97%;
+  width: 90%;
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -61,12 +61,8 @@ const Nav = styled.nav`
   padding: 0 36px;
   z-index: 3;
 
-  @media (max-width: 1200px) {
-    width: 85%;
-  }
-  @media (max-width: 768px) {
-    width: 90%;
-  }
+  @media (max-width: 1250px) {
+    width: 100%;
 `;
 
 const NavMenu = styled.div`

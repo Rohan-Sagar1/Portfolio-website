@@ -43,15 +43,18 @@ function LandingPage() {
               ))}
             </TagWrapper>
             <Name>ROHAN SAGAR</Name>
-            <SchoolDetails>Junior at Purdue University</SchoolDetails>
-            <Graduation>20-05-24 (DD-MM-YY)</Graduation>
+            <SchoolDetails>
+              Junior at Purdue University
+              <br/>
+              <p>20-05-24 (DD-MM-YY)</p>
+            </SchoolDetails>
             <NumberChart>
               <OtherInfo>
                 <h1>4</h1>
                 <span>LANGUAGES</span>
               </OtherInfo>
               <label></label>
-
+              
               <OtherInfo>
                 <h1>8</h1>
                 <span>PROGRAMMING<br/>LANGUAGES</span>
@@ -93,74 +96,91 @@ function LandingPage() {
 export default LandingPage
 
 const Container = styled.main`
+  @media (max-width: 1250px) {
+    flex-direction: column;
+    height: auto;
+    justify-content: flex-start;
+  }
+
   display: flex;
   width: 100%;
   height: 85%;
   position: absolute;
   background-color: #191A20;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 const Landing = styled.div`
+  @media (max-width: 1250px) {
+    flex-wrap: wrap;
+  }
   display: flex;
-  width: 100%;
+  flex-direction: row;
+  width: 90%;
+  height: 75%;
   justify-content: space-between;
-  margin-top: 10%;
-  margin-left: 2%;
+  margin: 150px auto 0;
+  align-items: center;
+  // margin-top: 10%;
+  // margin-left: 2%;
 `
 
 const LeftMenu = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: flex-end;
+  height: 100%;
+  width: 33.3%;
+  gap: 20px;
 
-  @media (max-width: 768px) {
-    position: static;
-    text-align: center;
-    margin-bottom: 50px;
+  @media (max-width: 1250px) {
+    order: 1;
+    width: 50%;
   }
 `;
 
 const Picture = styled.div`
-  flex-direction: column;
+  width: 33.3%;
+  height: 100%;
+  display: flex;
   img {
     height: 350px;
+    margin: auto;
     border-radius: 6px;
   }
 
-  @media (max-width: 768px) {
-    position: static;
+  @media (max-width: 1250px){
+    order: 2;
+    width: 50%;
     margin-top: 50px;
   }
+
 `;
 
 const RightMenu = styled.div`
-  color: white;
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
-  width: 35%;
-  margin-right: 25px;
-  gap: 10px;
+  width: 33.3%;
+  height: 100%;
+  gap: 20px;
+  justify-content: center;
+
+  @media (max-width: 1250px){
+    order: 3;
+    width: 100%;
+    margin-top: 20%;
+
+  }
 `
 
 const TagWrapper = styled.div`
   display: flex;
-  margin-top: 10px;
+  // margin-top: 10px;
 `
 const Tag = styled.p`
   font-size: 12px;
   padding: 2px 5px;
   color: white;
   background-color: #424247;
-  text-align: center;
   margin-right: 5px;
   border-radius: 3px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 2px rgba(0, 0, 0, 0.15), 0px 3px 3px rgba(0, 0, 0, 0.15);
@@ -168,40 +188,42 @@ const Tag = styled.p`
 `;
 
 const Name = styled.span`
-  display: flex;
   color: white;
   font-size: 60px;
 
-  @media (max-width: 768px) {
-    font-size: 36px;
-  }
+  // @media (max-width: 768px) {
+  //   font-size: 36px;
+  // }
 `;
 
 const SchoolDetails = styled.span`
-  display: flex;
   color: white;
   font-size: 20px;
-  @media (max-width: 768px) {
+
+  p {
     font-size: 14px;
+    margin: 0;
   }
+
+  // @media (max-width: 768px) {
+  //   font-size: 14px;
+  // }
 `;
 
-const Graduation = styled(SchoolDetails)`
-  font-size: 14px;
-`
 
 const OtherInfo = styled.div`
   color: white;
-  height: 70%;
+  align-items: center;
+  // height: 70%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
+  text-align: center;
 
   h1 {
     font-size: 54px;
     border-bottom: 2px solid red;
-    width: 50px;
-    text-align: center;
+    width: 60px;
     padding-bottom: 5px;
   }
 
@@ -209,54 +231,57 @@ const OtherInfo = styled.div`
     font-size: 14px;
   }
 
-  @media (max-width: 768px) {
-  h1 {
-    font-size: 36px;
-  }
+  // @media (max-width: 768px) {
+  // h1 {
+  //   font-size: 36px;
+  // }
 
-  span {
-    font-size: 12px;
-  }
+  // span {
+  //   font-size: 12px;
+  // }
 }`;
 
 const NumberChart = styled.div`
   display: flex;
+  // align-items: center;
+  height: 40%;
+  width: 80%;
   gap: 30px;
   label {
     border-right: 2px solid #3F3F3F;
-    margin-top: 15px;
-    height: 90%;
-  }
+  //   height: 90%;
+  // }
 `
 
 const UserSelect = styled.div`
+  // background-color: blue;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  margin-left: 120px;
+  text-align: center;
+  // margin-top: 20px;
+  // margin-left: 120px;
   gap: 20px;
-  justify-content: center;
+  // justify-content: center;
+  color: white;
 
   span {
     font-size: 18px;
   }
-
-  label {
-    display: flex;
-    margin-left: 30px;
-  }
 `
 
-  const RedOption = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const RedOption = styled.div`
+  // position: relative;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   width: 100px;
-  height: 40px;
-  margin-left: 50px;
+  margin: auto;
+  // height: 40px;
+  // margin-left: 50px;
   background-color: rgb(143, 2, 14);
-  color: white;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 2px rgba(0, 0, 0, 0.15), 0px 3px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  // color: white;
   font-family: "Share Tech Mono", monospace;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -277,9 +302,9 @@ const UserSelect = styled.div`
     transition: background-color 0.2s;
     z-index: -1;
   }
-  &:active::before {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
+  // &:active::before {
+  //   background-color: rgba(0, 0, 0, 0.4);
+  // }
   `;
 
   const BlueOption = styled(RedOption)`
