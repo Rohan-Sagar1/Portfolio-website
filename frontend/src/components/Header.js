@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 
 function Header() {
+
   return (
     <Nav>
       <NavMenu>
@@ -60,7 +61,6 @@ const Nav = styled.nav`
   align-items: center;
   padding: 0 36px;
   z-index: 3;
-
   @media (max-width: 1250px) {
     width: 100%;
 `;

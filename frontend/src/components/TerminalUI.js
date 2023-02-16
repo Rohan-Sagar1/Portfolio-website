@@ -98,12 +98,13 @@ const GreenCircle = styled(Circle)`
 const StyledIDEContainer = styled.div`
   display: flex;
   height: 70%;
-  margin-top: 60%;
   margin-left: 2%;
   flex-direction: column;
   width: 50%;
   position: absolute;
   border-radius: 6px;
+  box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.5);
+  background-color: white;
 `;
 
 const Header = styled.div`
@@ -113,7 +114,7 @@ const Header = styled.div`
     width: 100%;
     flex-direction: row;
     align-items: center;
-    background-color: #595858;
+    background-color: #3D3D3D;
     border-radius: 6px 6px 0 0;
     padding: 10px;
 
@@ -132,7 +133,7 @@ const StyledCodeEditor = styled.div`
   flex-direction: row;
   text-wrap: nowrap;
   border-radius: 0 0 6px 6px;
-  background-color: #464646;
+  background-color: #353535;
   &:focus {
     outline: none;
   }
@@ -146,7 +147,7 @@ const LineNumber = styled.div`
     color: #888;
     z-index: 1;
     font-size: 12px;
-    background-color: #595858;
+    background-color: #3D3D3D;
     border-radius: 0 0 0 6px;
 `;
 

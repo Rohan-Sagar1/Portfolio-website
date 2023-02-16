@@ -244,12 +244,11 @@ const OtherInfo = styled.div`
 const NumberChart = styled.div`
   display: flex;
   // align-items: center;
-  height: 40%;
+  height: 35%;
   width: 80%;
   gap: 30px;
   label {
     border-right: 2px solid #3F3F3F;
-  //   height: 90%;
   // }
 `
 
