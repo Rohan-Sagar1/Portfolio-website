@@ -17,10 +17,10 @@ const VotesSchema = new mongoose.Schema(
     fighterName: {
       type: String,
     },
-    ringSideColor: {
+    color: {
       type: Boolean,
     }
-  },
+  }, { timestamps: true, versionKey: false }
 );
 
 const Votes = mongoose.model('votes', VotesSchema);
