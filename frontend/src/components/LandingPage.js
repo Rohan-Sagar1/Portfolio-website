@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from "styled-components";
 import UFCTimer from "./UFCTimer";
+import { EventContext } from "./Home";
 
 let id = 0;
 
@@ -14,6 +15,7 @@ const INITIAL_STATES = [
 function LandingPage() {
   const [count, setCount] = useState(2);
   const [selectedChoice, setSelectedChoice] = useState("");
+  const [event, setEvent] = useContext(EventContext);
 
   const handleSelection = choice => {
     if (!selectedChoice) {
@@ -25,7 +27,7 @@ function LandingPage() {
     if (count < 15) {
       interval = setInterval(() => {
         setCount(count + 1);
-      }, 5000);
+      }, 3000);
     } else {
       setCount(2);
     }
@@ -77,11 +79,11 @@ function LandingPage() {
               <UserSelect>
                 <span>What are your picks for the fight?</span>
                 <RedOption onClick={() => handleSelection("Red")}>
-                  <p>Red</p>
+                  <p>{event[1]}</p>
                   {selectedChoice === "Red"}
                 </RedOption>
                 <BlueOption onClick={() => handleSelection("Blue")}>
-                  <p>Blue</p>
+                  <p>{event[2]}</p>
                   {selectedChoice === "Blue"}
                 </BlueOption>
                 {/* <label>You selected: {selectedChoice}</label> */}

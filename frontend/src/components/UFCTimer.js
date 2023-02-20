@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import { EventContext }  from "./Home";
 import axios from "axios";
 import cheerio from "cheerio";
 
@@ -83,7 +84,7 @@ function UFCTimer() {
       </Container>
     </ContestantTwo>
   </Timer>
-  <Date>{event[2]}</Date>
+    <Date>{event[2]}</Date>
   </>
   )}
 
