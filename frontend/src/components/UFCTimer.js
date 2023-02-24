@@ -1,30 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
-import { EventContext }  from "./Home";
 import axios from "axios";
 import cheerio from "cheerio";
+import EventContext from '../context/useContext';
 
 function UFCTimer() {
   const [timeLeft, setTimeLeft] = useState(300);
-  const [event, setEvent] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const events = [];
-      const ufcfighter = await axios.get('https://www.ufc.com/events');
-      const $ = cheerio.load(ufcfighter.data);
-      const eventFighters = $('.c-card-event--result__headline');
-      const eventDate = $('.c-card-event--result__date');
-      let event = $(eventFighters[0]).text().trim();
-      let eventTime = $(eventDate[0]).text().trim();
-      const [firstFighter, secondFighter] = event.split(' vs ');
-      events.push(firstFighter);
-      events.push(secondFighter);
-      events.push(eventTime);
-      setEvent(events);
-    };
-    fetchData();
-  }, []);
+  const event = useContext(EventContext);
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -70,7 +52,7 @@ function UFCTimer() {
     <Contestant>
       <Container>
         <TextWrapper>
-            <span>{event[0]}</span>
+            <span>{event.fighters[0]}</span>
         </TextWrapper>
         <RedBanner/>
       </Container>
@@ -78,13 +60,13 @@ function UFCTimer() {
     <ContestantTwo>
       <Container>
         <TextWrapper>
-            <span>{event[1]}</span>
+            <span>{event.fighters[1]}</span>
         </TextWrapper>
         <BlueBanner/>
       </Container>
     </ContestantTwo>
   </Timer>
-    <Date>{event[2]}</Date>
+    <Date>{event.eventDate}</Date>
   </>
   )}
 
