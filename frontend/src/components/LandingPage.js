@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import styled from "styled-components";
 import UFCTimer from "./UFCTimer";
+import EventContext from '../context/useContext';
+import axios from "axios";
+import cheerio from "cheerio";
 
 let id = 0;
 
@@ -14,6 +17,27 @@ const INITIAL_STATES = [
 function LandingPage() {
   const [count, setCount] = useState(2);
   const [selectedChoice, setSelectedChoice] = useState("");
+  const [event, setEvent] = useState({
+    eventDate: '',
+    fighters: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const ufcfighter = await axios.get('https://www.ufc.com/events');
+      const $ = cheerio.load(ufcfighter.data);
+      const eventFighters = $('.c-card-event--result__headline');
+      const eventDate = $('.c-card-event--result__date');
+      let eventName = $(eventFighters[0]).text().trim();
+      let eventTime = $(eventDate[0]).text().trim();
+      const [firstFighter, secondFighter] = eventName.split(' vs ');
+      setEvent({
+        eventDate: eventTime,
+        fighters: [firstFighter, secondFighter],
+      });
+    };
+    fetchData();
+  }, []);
 
   const handleSelection = choice => {
     if (!selectedChoice) {
@@ -25,7 +49,7 @@ function LandingPage() {
     if (count < 15) {
       interval = setInterval(() => {
         setCount(count + 1);
-      }, 5000);
+      }, 3000);
     } else {
       setCount(2);
     }
@@ -73,18 +97,19 @@ function LandingPage() {
           </Picture>
 
           <RightMenu>
+          <EventContext.Provider value={event}>
             <UFCTimer/>
+          </EventContext.Provider>
               <UserSelect>
                 <span>What are your picks for the fight?</span>
                 <RedOption onClick={() => handleSelection("Red")}>
-                  <p>Red</p>
+                  <p>{event.fighters[0]}</p>
                   {selectedChoice === "Red"}
                 </RedOption>
                 <BlueOption onClick={() => handleSelection("Blue")}>
-                  <p>Blue</p>
+                  <p>{event.fighters[1]}</p>
                   {selectedChoice === "Blue"}
                 </BlueOption>
-                {/* <label>You selected: {selectedChoice}</label> */}
               </UserSelect>
           </RightMenu>
         </Landing>
