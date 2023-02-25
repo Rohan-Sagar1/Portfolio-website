@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import styled from "styled-components";
 import UFCTimer from "./UFCTimer";
 import EventContext from '../context/useContext';
 import axios from "axios";
 import cheerio from "cheerio";
+import { Chart } from "react-google-charts";
 
 let id = 0;
 
@@ -17,6 +18,9 @@ const INITIAL_STATES = [
 function LandingPage() {
   const [count, setCount] = useState(2);
   const [selectedChoice, setSelectedChoice] = useState("");
+  const [fighters, setFighters] = useState([]);
+  const [votes, setVotes] = useState(0);
+  const [totalVotes, setTotalVotes] = useState(0);
   const [event, setEvent] = useState({
     eventDate: '',
     fighters: [],
@@ -39,11 +43,6 @@ function LandingPage() {
     fetchData();
   }, []);
 
-  const handleSelection = choice => {
-    if (!selectedChoice) {
-      setSelectedChoice(choice);
-    }};
-
   useEffect(() => {
     let interval = null;
     if (count < 15) {
@@ -55,6 +54,45 @@ function LandingPage() {
     }
     return () => clearInterval(interval);
   }, [count]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get("http://localhost:9000/get-votes");
+        const fighterNames = response.data.map(vote => vote.fighterName);
+        setFighters(fighterNames);
+        const votes = response.data.length;
+        setVotes(votes);
+        const totalVotes = response.data.length;
+        setTotalVotes(totalVotes);
+      } catch(error) {
+        console.error(error);
+      }
+    }
+    if (!selectedChoice) {
+      getData();
+    }
+  }, [selectedChoice]);
+  
+  const handleSelection = choice => {
+    if (!selectedChoice) {
+      setSelectedChoice(choice);
+      axios.post('http://localhost:9000/post-votes', {
+        fighterName: choice,
+      });
+    }
+  };
+  
+  useEffect(() => {
+    const data = [      [fighters[0], votes],
+      [fighters[1], totalVotes - votes]
+    ];
+    console.log(data);
+  }, [fighters, votes, totalVotes]);
+
+  const data = [    [fighters[0], votes],
+    [fighters[1], votes]
+  ];
 
   return (
     <>
@@ -102,15 +140,19 @@ function LandingPage() {
           </EventContext.Provider>
               <UserSelect>
                 <span>What are your picks for the fight?</span>
-                <RedOption onClick={() => handleSelection("Red")}>
+                <RedOption onClick={() => handleSelection(event.fighters[0])}>
                   <p>{event.fighters[0]}</p>
-                  {selectedChoice === "Red"}
                 </RedOption>
-                <BlueOption onClick={() => handleSelection("Blue")}>
+                <BlueOption onClick={() => handleSelection(event.fighters[1])}>
                   <p>{event.fighters[1]}</p>
-                  {selectedChoice === "Blue"}
                 </BlueOption>
               </UserSelect>
+              {/* <Chart
+                chartType = "PieChart"
+                data={data}
+                width={"100%"}
+                height={"200px"}
+              /> */}
           </RightMenu>
         </Landing>
       </Container>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
-import axios from "axios";
-import cheerio from "cheerio";
 import EventContext from '../context/useContext';
 
 function UFCTimer() {
@@ -95,8 +93,8 @@ const Logo = styled.div`
   justify-content: center;
   overflow: hidden;
   img {
-    transform: translate(-10px, 0%);
-    width: 3.5em;
+    transform: translate(-15px, 0%);
+    width: 3.3em;
     height: 100%;
     transition: fill .3s ease;
     filter: invert(100%);
@@ -118,7 +116,7 @@ const ClockWrapper = styled.div`
     align-items: center;
     margin-left: 0.4em;
     color: white;
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-family: 'Hanken Grotesk', sans-serif;
     font-family: 'Quantico', sans-serif;
     user-select: none;

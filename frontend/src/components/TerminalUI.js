@@ -65,6 +65,7 @@ function TerminalUI() {
                     <p>import <span>requests</span></p>
                     <br/>
                     <p>def <label>trade_btc(</label><span>username, password</span><label>)</label></p>
+                    <br/><br/>
                 </TextEditor>
         </StyledCodeEditor>
       </StyledIDEContainer>
